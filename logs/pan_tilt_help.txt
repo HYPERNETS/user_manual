@@ -1,0 +1,11 @@
+usage: pan_tilt.py [-h] -p {0..360} -t {0..360} [-w] [-v]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -p {0..360}, --pan {0..360}
+                        set pan (azimuth angle in degrees)
+  -t {0..360}, --tilt {0..360}
+                        set tilt (zenith angle in degrees)
+  -w, --wait            wait for pan/tilt end of move and return real 
+				        position
+  -v, --verbose         print extra information

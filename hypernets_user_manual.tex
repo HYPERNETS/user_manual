@@ -1,0 +1,264 @@
+% Author : Alexandre Corizzi
+% Creation: 10/09/2020
+% Update: 21/02/2023 
+
+\pdfminorversion=7
+\documentclass[a4paper,11pt,notitlepage]{article}
+\usepackage{sectsty}
+\usepackage[hidelinks]{hyperref}
+\usepackage{stmaryrd}
+\usepackage{float}
+\usepackage{placeins}
+% \usepackage{hyperref}
+
+\hypersetup{
+  colorlinks   = true,      % Colours links instead of ugly boxes
+  urlcolor     = RoyalBlue, % Colour for external hyperlinks
+  linkcolor    = NavyBlue,  % Colour of internal links
+  citecolor   = red         % Colour of citations
+}
+
+\sectionfont{\color{astral}}
+\subsectionfont{\color{astral}}
+\subsubsectionfont{\color{astral}}
+\usepackage[
+  top=4.6cm,
+  bottom=2cm,
+  left =1.8cm,
+  right=1.8cm,
+  headheight=94pt, 
+  includehead,
+  includefoot,
+  heightrounded, % to avoid spurious underfull messages
+]{geometry} 
+
+\addtolength{\textheight}{90pt}
+\addtolength{\topmargin}{-90pt}
+
+% Smiley clock : 
+\usepackage[clock]{ifsym}
+% Tilde :
+\usepackage{textcomp} 
+
+% Listings
+\usepackage[utf8]{inputenc}
+\usepackage{listings, color, upquote}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{astral}{RGB}{46,116,181}
+
+% Figures
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{url}
+
+% Tableaux 
+\usepackage{tabularx}
+\usepackage{multirow}
+% Rotating table
+\usepackage{rotating} 
+
+% Header 
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% Listing Bash
+\lstset{
+                     numbers          = none,           
+                     basicstyle       = \ttfamily\normalsize,
+                     numbers          = none,           
+                     frame            = single,
+                     backgroundcolor  = \color{gray!10},
+                     commentstyle     = \color{MidnightBlue},
+                     keywordstyle     = \color{RedViolet},
+                     stringstyle      = \color{red},
+                     emphstyle        = \color{Bittersweet},
+                     rulecolor        = \color{black},
+                     emph             = {for, in},
+                     keepspaces       = true,
+                     showspaces       = false,
+                     showstringspaces = false,         
+                     showtabs         = false,                 
+                     tabsize          = 4,                      
+                     title            = \lstname,
+					 aboveskip        = 0pt,
+					 belowskip        = 10pt
+}
+
+% Listing Output
+\lstdefinelanguage{commandline}{
+    sensitive=false
+} 
+\lstdefinestyle{output}{
+					 language         = commandline,
+					 numbers          = left,
+					 xleftmargin      = 2em,
+					 framexleftmargin = 2em
+}
+
+
+%==============================================================================%
+%                              Header/Footer                                   %
+%==============================================================================%
+% Params of the doc :
+\newcommand{\reference}{HYPERNETS\_D4.7\_User\_Manual\_V\numVersion}
+\newcommand{\numVersion}{2.1}
+\newcommand{\titleDoc}{D4.7 User Manual}
+% Header
+\fancyhf{} % sets both header and footer to nothing
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[c]{
+\begin{center}
+\begin{tabularx}{\textwidth}{|c|X|l|}
+    \hline
+    \multirow{3}{*} {\includegraphics[scale=.080]{logoHypernet.png}}            
+     & Reference    &     \reference            \\
+     \cline{2-3}
+    \multirow{3}{*} & Version  &  \numVersion   \\
+     \cline{2-3}
+    \multirow{3}{*} & Date     &  \today        \\
+    \hline
+\end{tabularx}
+\end{center}}
+% Footer
+\fancyfoot[l]{Confidential \copyright HYPERNETS Consortium (RBINS, TARTU, SU, 
+CNR, NPL, GFZ, CONICET)}
+% Pagination
+\fancyfoot[r]{\thepage}
+
+%==============================================================================%
+% Command for "clock + time required" displaying
+%==============================================================================%
+\newcommand{\timeclock}[2]{
+	\vspace{1pt}
+	\textbf{\showclock{#1}{#2}\hspace{1pt} Required time:}
+	\ifx0#1 \textbf{#2 min}
+	\else   \textbf{#1 h #2}
+	\fi}
+
+%==============================================================================%
+% Command to round angles on pictures
+% src: https://subscription.packtpub.com/book/hardware-&-creative/9781784395148/4/ch04lvl1sec45/cutting-an-image-to-get-rounded-corners
+%==============================================================================%
+\usepackage{tikz}
+\newsavebox{\picbox}
+\newcommand{\cutpic}[3]{
+	\savebox{\picbox}{\includegraphics[width=#2]{#3}}
+	\tikz\node [draw, rounded corners=#1, 
+	line width=1pt,
+	color=astral, 
+	minimum width=\wd\picbox, 
+	minimum height=\ht\picbox, 
+	path picture={\node at (path picture bounding box.center)
+	{\usebox{\picbox}};}] {};}
+%==============================================================================%
+% usage: \cutpic{1cm}{\textwidth}{image.jpg}
+%==============================================================================%
+
+
+
+%==============================================================================%
+%                               Début du document                              %
+%==============================================================================%
+% Chapter Selection:
+% \includeonly{mounting_guide, linux_installation}
+% \includeonly{hypernets_tools, first_tests, old_version_manual}
+% \includeonly{first_tests, annex_config_files}
+%==============================================================================%
+
+\begin{document}
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\thispagestyle{fancy}
+\vspace*{8mm}
+\begin{center}
+    \begin{tabularx}{\textwidth}{c}
+        \includegraphics[scale=.23]{logoHypernet.png}
+        \vspace{2mm} \\
+        \Large{\textbf{\titleDoc}} \\
+        \Large{\textbf{Version \numVersion}} \\
+        \Large{\textbf{\today}}
+    \end{tabularx}
+\end{center}
+\end{titlepage}
+%==============================================================================%
+\setcounter{page}{2}
+\noindent Version History
+\vspace{8pt}
+\newline
+\begin{tabularx}{\textwidth}{|l|l|X|l|}
+\hline
+\textbf{Version} & \textbf{Date}     & \textbf{Description} & \textbf{Author} \\ \hline
+            0.1  & September 10, 2020     & First Draft & Alexandre Corizzi   \\ \hline
+            0.2  & September 16, 2020     & Feedback from Clémence Goyens & 
+			Alexandre Corizzi \\ \hline
+            0.3  & September 22, 2020     & Notes from Clémence Goyens    
+			& Alexandre Corizzi \\ \hline
+            0.4  & September 24, 2020     & Comments from Javier Concha 
+			& Alexandre Corizzi \\ \hline
+			0.5  & September 29, 2020     & Draft Notebook Tests Section
+			& Clémence Goyens \\ \hline
+			0.5b  & October 1, 2020       &  Pan/Tilt RS485 Config + FTP Link 
+			Correction & Alexandre Corizzi \\ \hline
+			0.5c  & October 1, 2020       &  Feedback from Joel Kuusk
+			& Alexandre Corizzi \\ \hline
+			1.0a  & March 29, 2021   & Update with new software
+			& Alexandre Corizzi \\ \hline
+			1.0b  & May 27, 2021     & Timezone and other minor changes
+			& Alexandre Corizzi \\ \hline
+			1.0c  & June 9, 2021     & Add Yoctopuce annex
+			& Alexandre Corizzi \\ \hline
+			1.1a  & July 15, 2021    & Switch to Beta Version \& Yoctopuce Update
+			& Alexandre Corizzi \\ \hline
+			1.1b  & July 16, 2021    & Comments by David Doxaran  
+			& Alexandre Corizzi \\ \hline
+			1.1c  & July 28, 2021    & Comments by Joel Kuusk
+			& Alexandre Corizzi \\ \hline
+			2.0  & February 21, 2023    & Add Mounting Illustrations \& Debian
+			& Alexandre Corizzi \\ \hline
+			2.1  & April 21, 2023    & Update GUI screenshots, metadata configs
+			& Alexandre Corizzi \\ \hline
+			2.2  & July 17, 2023    & Update Debian section 
+			& Alexandre Corizzi \\ \hline
+
+\end{tabularx}
+\newpage
+%==============================================================================%
+% \hypersetup{linkcolor=true}
+\tableofcontents
+\clearpage
+
+%==============================================================================%
+%                             Première page                                    %
+%==============================================================================%
+\section{Executive summary}
+
+This document aims to guide step by step the user to perform the installation of
+a Hypernets System. Firstly, a basic illustrated guide to assemble the
+different mechanical and electronic parts of the system will take place.
+Secondly, a tutorial about the installation of the a Linux operating system will be 
+described. This, including both Manjaro and Debian Linux on the embedded computer 
+(rugged PC). In third place, the basic set-up and some essential tests to move the 
+pan-tilt - motor part of the system - and making some Hypstar Radiometer measurements 
+will be provided. Finally, a procedure to make automatic measurements at 
+arbitrary times - the autonomous mode - will be described.
+
+\newpage
+
+%==============================================================================%
+\include{src/mounting_guide}
+\include{src/linux_installation}
+\include{src/hypernets_tools}
+\include{src/first_tests}
+\include{src/autonomous_mode}
+
+%==============================================================================%
+
+\include{src/annex_config_files}
+\include{src/annex_rugged_pc}
+\include{src/annex_yoctopuce}
+
+%==============================================================================%
+\include{src/old_version_manual}
+%==============================================================================%
+
+\end{document}

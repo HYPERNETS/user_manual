@@ -1,0 +1,16 @@
+usage: relay.py [-h] (-g | -s {on, off} | -r | -p {on, off, unchanged}) 
+                -n {1..6} [-f]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -g, --get             display relay's states
+  -s {on, off}, --set {on, off}
+                        set the state of the relay
+  -r, --reset           reset relay (1 sec off, then on)
+  -p {on, off, unchanged}, --set-at-power-on {on, off, unchanged}
+                        schedule the state of the relay for next wakeup 
+						(use --force [-f] to write in flash memory)
+  -n {1..6}, --id-relay {1..6}
+                        ID number of the relay
+  -f, --force           forces relay #1 to switch off, and allows to 
+					    write in memory for the state at power-on option

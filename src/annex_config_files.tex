@@ -1,0 +1,258 @@
+\section{Annexes}
+
+\subsection{Configuration file: static\_config.ini}
+\label{annex:staticconfig}
+
+The \emph{static configuration file} is the file dealing with the parameters
+that user will preferably not change. It includes the communication 
+settings with the Yocto-Pictor and the server
+credentials. As it contains critical settings, this file will not be 
+automaticaly synchronized over the network.
+
+\subsubsection{Section: yoctopuce}
+\label{annex:configYocto}
+\begin{tabularx}{\textwidth} {
+        | >{\hsize=.15\hsize}X
+        | >{\hsize=.6\hsize}X
+		| >{\hsize=.25\hsize}X | }
+	\hline
+	\textbf{field} & \textbf{definition} & values (\textbf{default}) \\
+	\hline
+	\hline
+	yoctopuce\_ip &	Yocto-Pictor-Wifi IP Address & 10.42.0.X
+	\\ \hline
+	yocto\_prefix1 & Yocto-Pictor Serial (relay board) & OBSVLFR1-XXXXXX
+	\\ \hline
+	yocto\_prefix2 & Yocto-Pictor-Wifi Serial &	OBSVLFR2-XXXXXX
+	\\ \hline
+	yocto\_gps & Yocto-GPS-V2 Serial & YGNSSMK2-XXXXXX
+	\\ \hline
+	bypass\_yocto & Bypass Yocto-Pictor during in a sequence (debug mode) & 
+	\textbf{no} \\ \hline
+\end{tabularx}
+
+\subsubsection{Section: network}
+\label{annex:configNetwork}
+
+\begin{tabularx}{\textwidth} {
+		| >{\hsize=.2\hsize}X
+        | >{\hsize=.65\hsize}X
+		| >{\hsize=.15\hsize}X | }
+	\hline
+	\textbf{field} & \textbf{definition} & \textbf{default} \\
+	\hline
+	\hline
+	credentials & user account and server name & user@server 
+	\\ \hline
+	remote\_dir & name of the remote directory where data/config/logs are
+	pushed & \texttildelow/XXYY 
+	\\ \hline
+
+	ssh\_port &	ssh port used to connect to the server & 22
+	\\ \hline
+
+	remote\_ssh\_port & ssh port used to connect from the server to the host
+	system (use ssh -p 20213 rugged\_pc\_user@127.0.0.1 to connect)
+	& 20213
+	\\ \hline
+
+\end{tabularx}
+
+	%  webcam\_sky
+	%  webcam\_site & credentials (user/pass) + IP address of the webcams & 
+	%  USER:PASS\_1@ ip\_cam\_sky
+	%  USER:PASS\_2@ ip\_cam\_site  & 
+	%  see section \textcolor{red}{TODO} 
+	%  & \\ \hline
+
+
+\subsection{Configuration file : dynamic\_config.ini}
+\label{annex:dynamicconfig}
+The \emph{dynamic configuration file} is a communication tool allowing the
+user to remotely change settings of the system. Unlike the \emph{static
+configuration file}, it is synchronized with an identical file on the server side.
+Synchronization over the network is performed using the one with the more recent 
+modification.
+
+\subsubsection{Section: general}
+\begin{tabularx}{\textwidth} {
+        | >{\hsize=.15\hsize}X
+        | >{\hsize=.65\hsize}X
+		| >{\hsize=.2\hsize}X | }
+	\hline
+	\textbf{field} & \textbf{definition} & values (\textbf{default}) \\
+	\hline
+	\hline
+	keep\_pc & state of the system at the end of the sequence & on / \textbf{off} 
+	\\ \hline
+
+	start\_sequence & start or no the sequence every time the system is turned 
+	on & \textbf{yes} / no 
+	\\ \hline
+
+	auto\_update & check for update at start-up & yes / \textbf{no}
+	\\ \hline
+
+	sequence\_file 	& which protocol file to follow & \textit{path to file}
+	\\ \hline
+\end{tabularx}
+
+\subsubsection{Section: GPS}
+\begin{tabularx}{\textwidth} {
+        | >{\hsize=.15\hsize}X
+		| >{\hsize=.85\hsize}X| }
+	\hline
+	\textbf{field} & \textbf{definition} \\
+	\hline
+	\hline
+	latitude  &  Cartesian latitude of the location (float)
+	\\ \hline
+	longitude & Cartesian longitude of the location (float)
+	\\ \hline
+\end{tabularx}
+
+
+\subsubsection{Section: pantilt}
+\begin{tabularx}{\textwidth} {
+        | >{\hsize=.15\hsize}X
+        | >{\hsize=.6\hsize}X
+		| >{\hsize=.25\hsize}X | }
+	\hline
+	\textbf{field} & \textbf{definition} & values (\textbf{default}) \\
+	\hline
+	\hline
+	offset\_pan    & Azimuth adjustement value (in degrees) to point to South or North & 
+	[0 - 360] \textbf{0} \\ \hline
+	offset\_tilt   & Zenith adjustement value (in degrees) to point to point
+	the Nadir &
+	[0 - 360] \textbf{60} \\ \hline
+	reverse\_tilt & Change the sign of both Azimuth and Zenith &
+	yes / \textbf{no} \\
+\hline
+\end{tabularx}
+
+
+\subsubsection{Section: metadata}
+Metadatas are the information embedded in each Hypernets Sequence folder. 
+In particular, each metadata file will have \emph{a header}, that is, 
+the top the file. This header contains some dynamic informations like 
+the current date and time as well as static ones, for instance the site
+identification. This section of the \emph{dynamic config file} is the 
+exact content of each metadata header. Fields between brackets will be
+automatically processed by the host system.
+
+\begin{table}[H]
+	\centering
+	\begin{tabularx}{\textwidth} {
+	        | >{\hsize=.25\hsize}X
+	        | >{\hsize=.50\hsize}X
+			| >{\hsize=.25\hsize}X | }
+		\hline
+		\textbf{field} & \textbf{definition} & values  \\
+		\hline
+		\hline
+
+		principal\_invesigator & Name of the PI, & 
+		\textit{Investigator name} 
+		\\ \hline
+
+		datetime & UTC date and time at the sequence start time (no need to edit) 
+		& \{datetime\} \\ \hline
+
+		hypstar\_sn &  Hypstar Serial Number  & 123456\\ \hline
+		site\_id & A site ID with the naming convention: XXYY such as: \newline
+			-- XX: two first letters of the site name  \newline
+			-- YY two first letters of the country partners-name 
+		& XXYY \\ \hline
+
+		protocol\_file\_name & Self-reference to the \textit{protocol file name} 
+		from the \textit{general section} of this file (no need to edit) &  
+		\$\{general:sequence\_file\} 
+		\\\hline
+
+		latitude & Self-reference to the latitude from the GPS section of this file 
+		(no need to edit) & \$\{GPS:latitude\} \\ \hline
+
+		longitude & Self-reference to the longitude from the GPS section of this file 
+		(no need to edit) & \$\{GPS:longitude\}\\ \hline
+
+		offset\_pan\ & Self-reference to the \textit{protocol file name} 
+		from the \textit{pantilt} of this file (no need to edit) &  
+		\$\{pantilt:offset\_pan\} 
+		\\\hline
+
+		offset\_tilt\ & Self-reference to the \textit{protocol file name} 
+		from the \textit{pantilt} of this file (no need to edit) &  
+		\$\{pantilt:offset\_tilt\} 
+		\\\hline
+
+		offset\_tilt\ & Self-reference to the \textit{protocol file name} 
+		from the \textit{pantilt} of this file (no need to edit) &  
+		\$\{pantilt:offset\_tilt\} 
+		\\\hline
+
+		azimuth\_switch\ & Self-reference to the \textit{protocol file name} 
+		from the \textit{pantilt} of this file (no need to edit) &  
+		\$\{pantilt:azimuth\_switch\} 
+		\\\hline
+
+	\end{tabularx}
+\end{table}
+\noindent\textbf{Note :} if you want to see what your metadata header will look like,
+you can use this command :
+\vspace{-10pt}
+\begin{lstlisting}
+python -m hypernets.abstract.create_metadata
+\end{lstlisting}
+
+\subsubsection{Section: hypstar}
+
+\begin{table}[H]
+	\centering
+	\begin{tabularx}{\textwidth} {
+			| >{\hsize=.15\hsize}X
+			| >{\hsize=.55\hsize}X
+			| >{\hsize=.30\hsize}X | }
+		\hline
+		\textbf{field} & \textbf{definition} & values (\textbf{default}) \\
+		\hline
+		\hline
+		hypstar\_port & path to the hypstar \textit{device file} 
+		& \textbf{/dev/radiometer0} \newline
+		/dev/ttyUSB5 
+		\\ \hline
+		baudrate & speed communication (in bauds) with the instrument 
+		& \textbf{115200}, 460800, 921600, 3000000, 6000000, 8000000
+		\\ \hline
+		loglevel & Set the log verbosity of the communication with the instrument 
+		& \textbf{ERROR}, INFO, DEBUG, TRACE 
+		\\ \hline
+		swir\_tec & Thermoelectric Cooler setting point (in degree Celsius) 
+		the SWIR module
+		& [ -15 ; +40 ] \textbf{0}
+		\\ \hline
+	\end{tabularx}
+\end{table}
+
+
+\begin{table}[H]
+	\centering
+	\begin{tabularx}{\textwidth} {
+			| >{\hsize=.2\hsize}X
+			| >{\hsize=.8\hsize}X|}
+		\hline
+		\textbf{Log Level} & \textbf{Definition}  \\
+		\hline
+		\hline
+		ERROR & only errors are reported on stderr \\ \hline
+		INFO & stdout + stderr \\ \hline
+		DEBUG & driver command execution printout to stdout \\ \hline
+		TRACE & low level communication bytes are printed to stdout \\
+		\hline
+	\end{tabularx}
+\end{table}
+
+%\begin{sidewaystable}
+% Webcams: see this
+% \href{https://github.com/HYPERNETS/hypernets\_tools/issues/35}{github issue}.
+%\end{sidewaystable}

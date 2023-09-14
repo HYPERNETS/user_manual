@@ -1,0 +1,386 @@
+%==============================================================================%
+% Mounting part
+%==============================================================================%
+
+\section{Mounting Guide}
+
+\subsection{Material List}
+
+\begin{table}[!h]
+	\begin{tabularx}{\textwidth} {
+			| >{\hsize=.15\hsize}X
+			| >{\hsize=.55\hsize}X
+			| >{\hsize=.30\hsize}X | }
+		\hline
+		\textbf{Provider} & \textbf{Designation} & \\
+		\hline
+		\hline
+		Tartu & Pan-tilt, Instrument \& Validation Module 
+		& Right part of the Figure \ref{fig:hypstarYocto}
+		\\ \hline
+	  	& RS485 Serial Board Converter 
+		& Green Card in the Figure \ref{fig:hypstarYocto}
+		\\ \hline
+		& Alignement Tool & Figure \ref{fig:alignement}
+		\\ \hline
+		& Anti-Dust Cap & Figure \ref{fig:antiDust}
+		\\ \hline
+		& Mechanical Part & Metal parts in the Figure \ref{fig:hypstarYocto}
+		\\ \hline
+
+		Studiel & Main Box & Figure  \ref{fig:StudielBoxMain}
+		\\ \hline
+		& Ancillary Box & Figure \ref{fig:StudielBoxAnci}
+		\\ \hline
+		& Junction Box & Figure \ref{fig:StudielJunction} 
+		\\ \hline
+		& 1 Green Samtec Cable (Main box -- Junction box) & Figure \ref{fig:StudielCable}
+		\\ \hline
+		& 1 Orange Samtec Cable (Main box -- Ancillary box) & Figure \ref{fig:StudielCable}
+		\\ \hline
+		& 2 Yellow Samtec Cables (Webcams) &
+		\\ \hline
+		& 1 Blue Samtec Cable (Power System -- Main box) & Figure \ref{fig:StudielCable}
+		\\ \hline
+		& 2 Ray tech Rapid Joint &
+		\\ \hline
+		Yoctopuce & Yocto-Pictor
+		& Figure \ref{fig:yoctoDissas}
+		\\ \hline
+		N/A & Rugged PC Cincoze
+		& Left part of the Figure \ref{fig:hypstarYocto}
+		\\ \hline
+		& Power system &
+		\\ \hline
+		& 2 Webcams Wi-Fi TVIP ABUS 62561 &
+		\\ \hline
+	\end{tabularx}
+\end{table}
+
+\clearpage
+
+
+
+\begin{figure}[!ht]
+	\centering
+		\cutpic{5pt}{0.8\textwidth}{images/mount/IMG_9781.JPG}
+		\caption{Yoctopuce, Rugged PC and Hypstar \& Validation Module}
+		\label{fig:hypstarYocto}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\begin{minipage}[b]{.8\textwidth}
+		\cutpic{5pt}{\textwidth}{images/mount/IMG_9797.JPG}
+		\caption{Studiel Cables}
+		\label{fig:StudielCable}
+	\end{minipage}
+\end{figure}
+
+
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+	  \cutpic{5pt}{\linewidth}{images/mount/IMG_9800.JPG}
+	  \vspace{-20pt}
+	  \caption{The Studiel main Box}
+	\label{fig:StudielBoxMain}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+	  \cutpic{5pt}{\linewidth}{images/mount/IMG_9788.JPG}
+	  \vspace{-20pt}
+	  \caption{The Studiel Ancillory Box}
+	\label{fig:StudielBoxAnci}
+  \end{minipage}
+\end{figure}
+\vspace{40pt}
+\begin{figure}[!ht]
+	\centering
+	\begin{minipage}[b]{\textwidth}
+		\cutpic{5pt}{\linewidth}{images/mount/IMG_9791.JPG}
+		\vspace{-20pt}
+		\caption{Studiel Junction Box}
+		\label{fig:StudielJunction}
+	\end{minipage}
+\end{figure}
+\vspace{-10pt}
+\noindent \textcolor{red}{Please note that the mechanical mount for pan-tilt
+and the powering system are not supported by this guide.}
+
+\newpage
+\clearpage
+
+\subsection{Flip the metal piece on the top of the  instrument}
+\timeclock{0}{10}
+
+\vspace{10pt}
+\noindent For shipping reasons -- size of the package, avoiding shipping damages -- 
+the Hypstar Radiometer \& the Validation Module are shipped with the 
+top metal wing mounted in the wrong way. First, fix the pan-tilt on your
+mechanical mount. Unscrew the 4 screws (labelled in red on \ref{pic:instrum1})
+and invert the direction of the wing like showed in the following pictures.
+
+\vspace{10pt}
+\noindent\textbf{\underline{Material List}:}
+\begin{itemize}
+	\item Allen key
+\end{itemize}
+
+
+\begin{figure}[!ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{scope}
+			\node[anchor=center,inner sep=0] (image) at (0,0)
+			{\cutpic{5pt}{\linewidth}{images/mount/IMG_9842.JPG}};
+			\draw[red,ultra thick,rounded corners] (-5.1,3.6) rectangle ++(0.6,0.6);
+			\draw[red,ultra thick,rounded corners] (-3.5,3.2) rectangle ++(0.6,0.6);
+			\draw[red,ultra thick,rounded corners] (-5.4,2.55) rectangle ++(0.6,0.6);
+			\draw[red,ultra thick,rounded corners] (-3.8,2.12) rectangle ++(0.6,0.6);
+		\end{scope}
+	\end{tikzpicture}
+	\vspace{-20pt}
+	\caption{Flip metal piece 1/3}
+	\label{pic:instrum1}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\begin{minipage}{.8\textwidth}
+		\cutpic{5pt}{\linewidth}{images/mount/IMG_9847.JPG}
+		\vspace{-20pt}
+		\caption{Flip metal piece 2/3}
+		\label{pic:instrum2}
+	\end{minipage}
+
+	\vspace{30pt}
+
+	\begin{minipage}{.8\textwidth}
+		\cutpic{5pt}{\linewidth}{images/mount/IMG_9851.JPG}
+		\vspace{-20pt}
+		\caption{Flip metal piece 3/3}
+		\label{pic:instrum3}
+	\end{minipage}
+\end{figure}
+
+
+\newpage
+\clearpage
+
+\subsection{The Inside of the Studiel Box}
+\timeclock{0}{30}
+\vspace{10pt}
+
+\noindent\textbf{\underline{Material List}:}
+\begin{itemize}
+	\item Allen key 2 and 5, Plate key 7
+	\item Screw drivers (flat/slotted and cross slot) 
+	\item Cutting plier
+\end{itemize}
+
+\subsubsection{Yocto-Pictor - Dissasembling \& Light Sensor}
+
+\underline{Instructions}:
+
+\begin{enumerate}
+	\item Unscrew the four screws at the top of the Yocto-Pictor
+	\item Split the Yoctopuce in two pieces (see figure \ref{fig:yoctoDissas})
+	\item Cut the light sensor of the ground floor
+	\item Fix it and plug it in the Studiel ancillary box (see figure
+		\ref{fig:lightSensor})
+\end{enumerate}
+\textcolor{red}{Warning: make sure to correctly cut the PCB track of the light 
+sensor before pulling it; there is a risk of ripping it of.}
+
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+	  \cutpic{5pt}{\linewidth}{images/mount/IMG_9815.JPG}
+	  \caption{Dissasembling the Yocto-Pictor}
+	\label{fig:yoctoDissas}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+	  \cutpic{5pt}{\linewidth}{images/mount/IMG_9819.JPG}
+	  \caption{Placement of the Light Sensor}
+	\label{fig:lightSensor}
+  \end{minipage}
+\end{figure}
+
+\clearpage
+\subsubsection{Yocto-Pictor - Reassembling in the Box}
+
+\underline{Instructions}:
+\begin{enumerate}
+	\item Place the Yocto-Pictor ground floor with relays on the top 
+		and the 4 screw tubes (figure \ref{fig:yoctoBottom})
+	\item Plug the bottom-top bridge and add carefully the top floor 
+		and fix it with screws (figure \ref{fig:yoctoTop})
+	\item Fix and connect the GPS antenna; then follow the wiring Table \ref{table:yoctoWire}
+\end{enumerate}
+
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+	  \cutpic{5pt}{\linewidth}{images/mount/IMG_9828.JPG}
+	  \caption{Fixing the bottom part}
+	\label{fig:yoctoBottom}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+	  \cutpic{5pt}{\linewidth}{images/mount/IMG_9830.JPG}
+	  \caption{Fixing the top part}
+	\label{fig:yoctoTop}
+  \end{minipage}
+\end{figure}
+
+
+ \begin{table}[h]
+	\begin{tabularx}{\textwidth} {| >{\hsize=.30\hsize}X| >{\hsize=.70\hsize}X| }
+		\hline
+		\textbf{Yocto-Pictor Pinouts} & \textbf{Studiel Box Connectors} \\
+		\hline
+		\hline
+		Relay 1 & PC  (Rugged PC power) \\ \hline
+		Relay 2 & PT  (Pan tilt) \\ \hline
+		Relay 3 & MM  (Measurement Module) \\ \hline
+		Relay 4 & RS  (Rain Sensor) \\ \hline
+		Relay 5 & WC1 (Webcam 1) \\ \hline
+		Relay 6 & WC2 (Webcam 2) \\ \hline
+		Main Power &  YP (Studiel Box Connector) \\ \hline
+		Light Sensor Connector & Dedicated tablecloth USB  \\ \hline
+		USB config Port & USB-B Micro cable \\ \hline
+	\end{tabularx}
+	\caption{Wiring table for the Yocto-Pictor}
+	 \label{table:yoctoWire}
+\end{table}
+
+\clearpage
+\subsubsection{Rugged PC and Serial Board Converter fixing}
+
+\underline{Instructions}:
+\begin{enumerate}
+	\item Attach the fixation support provided with the rugged PC, the grids upwards 
+		(see Figure \ref{fig:ruggedPCfix})
+	\item Unscrew the four srews (shown on Figure
+		\ref{fig:StudielBoxRuggedPCemplacement})
+	\item Fix the rugged PC ;  the side with DIO and the four serial ports must
+		be toward the top of the Studiel Box
+	\item Attach the serial board Converter and plug the brown cable in the
+		slot A, the red cable in the slot B (Figure \ref{fig:serialBoard})
+\end{enumerate}
+
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+	  \cutpic{5pt}{\linewidth}{images/mount/IMG_9802.JPG}
+	  \caption{Rugged PC - Fixation System}
+	\label{fig:ruggedPCfix}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+	  \cutpic{5pt}{\linewidth}{images/mount/IMG_9804.JPG}
+	  \caption{Area for the Rugged PC in the Box}
+	\label{fig:StudielBoxRuggedPCemplacement}
+  \end{minipage}
+\end{figure}
+
+
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}[b]{0.75\textwidth}
+	  \cutpic{5pt}{\linewidth}{images/mount/IMG_9832.JPG}
+	  \vspace{-20pt}
+	  \caption{Global view of the inside}
+	\label{label}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.24\textwidth}
+	  \cutpic{5pt}{\linewidth}{images/mount/IMG_9838.JPG}
+	  \caption{Serial Board Converter}
+	\label{fig:serialBoard}
+  \end{minipage}
+\end{figure}
+
+\noindent Now, you should have connectors pending next to their rugged PC pinouts that 
+you can plug:
+\begin{itemize}
+	\item Connect the two DIO terminal (uneven numbers on top)
+	\item Connect the RS485 wire (the one of the top) to the COM1
+	\item Connect the power supply and the Ethernet connector
+	\item Connect the USB cable for RS485 converter (HYPSTAR – Rugged PC connection)
+	\item Connect the USB cable for Yocto-Pictor 
+\end{itemize}
+
+\vspace{20pt}
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+	  \cutpic{5pt}{\linewidth}{images/mount/IMG_9855.JPG}
+	  \vspace{-10pt}
+	  \caption{Fixing the Junction Box}
+	\label{fig:fixJunction}
+  \end{minipage}
+\end{figure}
+
+\noindent Unscrew the top of the Junction Box and fix it on the top of the pan-tilt
+using the provided srews (see Figure \ref{fig:fixJunction}).
+
+% Fix the GPS on the metal holder (stick the side where MOLEX is written).
+% Fix the metal holder along the WIFI antenna.
+% Take the WIFI and GPS antenna of the Yoctopictor
+% Connect the GPS and WIFI antennas of the Yoctopuce
+% Fix antennas (use the two small once)
+% insert it into the Studiel main box
+
+\clearpage
+\subsection{Finalization}
+
+
+\begin{figure}[!th]
+	\centering
+	\begin{minipage}[h]{0.6\textwidth}
+		\vspace{-7cm}
+		\underline{Instructions}:
+		\begin{enumerate}
+			\item Carefully remove the Alignement Tool (Figure \ref{fig:alignement})
+			\item Place the anti-dust device (Figure \ref{fig:antiDust})
+			\item Carefully respecting the color code, connect the cables
+			\item Make sure the rugged PC switch is on \textit{AT}
+			\item Close the box
+		\end{enumerate}
+	\end{minipage}
+	\begin{minipage}[b]{0.3\textwidth}
+		\cutpic{5pt}{\linewidth}{images/mount/IMG_9878.JPG}
+		\vspace{-20pt}
+		\caption{Remove the \textit{Alignement Tool}}
+		\label{fig:alignement}
+	\end{minipage}
+\end{figure}
+
+
+\begin{figure}[!ht]
+	\centering
+	\begin{minipage}[b]{0.30\textwidth}
+		\cutpic{5pt}{\linewidth}{images/mount/IMG_9875.JPG}
+		\vspace{-20pt}
+		\caption{Put the anti-dust cap}
+		\label{fig:antiDust}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.65\textwidth}
+		\cutpic{5pt}{\linewidth}{images/mount/IMG_9861.JPG}
+		\vspace{-20pt}
+		\caption{Fixing the cables}
+		\label{fig:fixCables}
+	\end{minipage}
+\end{figure}
+
+\begin{figure}[!ht]
+  \begin{minipage}[b]{\textwidth}
+	  \cutpic{5pt}{\linewidth}{images/mount/IMG_9869.JPG}
+	  \caption{Overall Installation}
+	\label{label}
+  \end{minipage}
+\end{figure}

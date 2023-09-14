@@ -1,0 +1,124 @@
+\section{Autonomous System Mode}
+% \subsection{Protocol Definitions}
+% \subsubsection{Protocol v1}
+% \subsubsection{Protocol v2}
+
+\subsection{Set Relay n°1 ON at Wake-up}
+
+Before using the studiel-box, we need to set the Yocto-Pictor first 
+relay default value as ON. This aims to power-on the rugged-PC at the wake-up time
+of the Yocto-Pictor. To achieve this, fire up a terminal and use those commands:
+\begin{lstlisting}
+cd hypernets_tools/
+python -m hypernets.yocto.relay -fpon -n1
+\end{lstlisting}
+
+\noindent In order to test if it worked, hold the sleep button (the middle
+one) on the Yocto-Pictor until it goes to sleep. Then wake it up by pressing 
+the wake-up button (the upper one on the figure \ref{fig:yoctoSleep}). 
+The relay 1 should be closed and the associated green LED (i.e. the LED 1 ; on the 
+right of the card in the figure \ref{fig:yoctoSleep}) should light.
+
+\begin{figure}[h!]
+	\centering
+	\cutpic{5pt}{.50\linewidth}{images/yoctopuce_sleepbutton.png}
+	\caption{Yocto-Pictor: Three black buttons on the upper-left corner 
+			 \& Green Relay Light on the right side of the bottom card}
+	\label{fig:yoctoSleep}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Enable SSH access}% and Jupyter Notebook (workaround for headless system)}
+Closing the Studiel-box will make our system \emph{headless}.
+\emph{i.e.} it won't have any keyboard, screen or mouse connected on it. 
+As we still need to interact  with it, a workaround solution is to connect to Wi-Fi 
+and access it through a SSH, 
+\emph{a Secure Shell}. To enable this service, type those two lines in terminal:
+\begin{lstlisting}
+sudo systemctl enable sshd    # For Manjaro 
+sudo systemctl start sshd
+sudo systemctl enable ssh    # For Debian 
+sudo systemctl start ssh
+\end{lstlisting}
+Expected output:
+\vspace{-10pt}
+\begin{lstlisting}
+Created symlink /etc/systemd/system/multi-user.target.wants [...]
+\end{lstlisting}
+Then, try to connect to the Wi-Fi with any laptop and SSH like this 
+(you can use \href{https://www.putty.org/}{Putty} on Windows):
+\begin{lstlisting}
+ssh 'rugged_pc_user_name'@10.42.0.1
+\end{lstlisting}
+
+\subsection{Try a full sequence acquisition}
+Now edit the \textit{dynamic configuration} file and edit it with the
+following values:
+\begin{itemize}
+	% (see secion :\ref{})
+	\item sequence\_file = \textit{path to the sequence of your choice} 
+	\item start\_sequence = yes
+	\item keep\_pc = on
+\end{itemize}
+
+Then, run the command below and see if it works. The output \textit{sequence
+directory} should be saved in the folder \textit{DATA}. Its name is prefixed by
+\textit{SEQ} and given according to the \textit{current UTC date and time} 
+with the following format: \textit{SEQYYYYMMDDTHHMMSS}.
+\begin{lstlisting}
+./utils/run_service.sh
+\end{lstlisting}
+%After any modification of your config\_file.ini, you can try 
+%this to check if it worked.
+If everything is working properly, you can refer to the yoctopuce 
+\href{https://www.yoctopuce.com/EN/products/yoctohub-wireless/doc/YHUBWLN1.usermanual.html#CHAP9SEC1}{wake-up scheduler documentation} 
+in order to configure the system to wake up autonomously.
+In addition, to enable the automatic run of the sequence every time the system
+wakes up, run the installation script: 
+\begin{lstlisting}
+sudo install/04_setup_script_at_boot.sh
+\end{lstlisting}
+
+\subsection{Setup Server Communication}
+
+If not already done, generate a ssh key with:
+\begin{lstlisting}
+ssh -t rsa
+\end{lstlisting}
+
+Edit the section \textit{network} of the file \textit{config\_static.ini}, 
+create an empty directory in the appropriate folder on the server and run: 
+\begin{lstlisting}
+sudo install/05_setup_server_communication.sh
+\end{lstlisting}
+
+\textit{Example:} if your site name is 
+
+
+
+% \FloatBarrier
+
+% relays 2 and 3 and see if you are able to move the pan-tilt and take spectra.
+% Annex on calibration offset pan-tilt and geometry.
+
+% \FloatBarrier
+
+% relays 2 and 3 and see if you are able to move the pan-tilt and take spectra.
+% Annex on calibration offset pan-tilt and geometry.
+
+
+
+% \subsubsection{(optional) Jupyter and Voilà! as a more user friendly access}
+% \textcolor{red}{Draft!}: \href{https://jupyter.org}{Jupyter doc} and 
+% \href{https://voila.readthedocs.io/en/stable/using.html}{voilà! presentation}.
+% \newline
+% 
+% \begin{lstlisting}
+% ./install/DD_install_jupyter.sh
+% \end{lstlisting}
+% \emph{Note that there is no sudo here.}
+% Try then to connect with a webrowser to this address:
+% \begin{lstlisting}
+% https://10.42.0.1:8888
+% \end{lstlisting}
+% \textcolor{red}{INSERT SCREENSHOT HERE}

@@ -1,0 +1,198 @@
+
+\section{Hypernets Tools}
+
+\subsection{Presentation}
+\par \textit{hypernets\_tools} is the software developped for the Hypernets System.
+It consists in a \textit{Git} repository, it is mainly developped with Bash and
+Python (3.7+) languages. It is fully compatible with any UNIX system which
+inclues \textit{apt} or \textit{pacman} and a functionnal \textit{systemd}
+installation. It is also dependent on the \textit{libhypstar}, the \textit{driver} 
+library of the Hypstar.
+\textit{hypernets\_tools} is designed in the form of a python package,
+containing several folders, grouped by thematic.
+Most of the scripts contained within those folders are \textit{callable} 
+from a terminal and are \textit{self explanatory} thanks to the \textit{help} 
+command. In addition, a \textit{Graphical User Interface} is built on top of those 
+scripts, allowing to use some basic functionnalities of the system.
+\par The installation of the \textit{hypernets\_tools} is made using the 
+\textit{distributed version control system} \textit{Git}. 
+If you aren't familiar with this tool, you can refer to the 
+\href{https://en.wikipedia.org/wiki/Git}{the wikipedia of Git} or 
+its documentation. 
+
+\subsection{Installation}
+First clone the repository of the project with:
+\vspace{-10pt}
+\begin{lstlisting}
+git clone https://github.com/hypernets/hypernets_tools
+\end{lstlisting}
+Check-out the appropriate branch with:
+\vspace{-10pt}
+\begin{lstlisting}
+cd hypernets_tools/
+git branch -r            # List all remote branches
+git checkout main        # Checkout the branch you want
+\end{lstlisting}
+You should now be able to use the installation wizard:
+\vspace{-10pt}
+\begin{lstlisting}
+sudo ./install/EE_wizard.sh    
+\end{lstlisting}
+
+\noindent  This wizard will prompt you a menu where you can:
+\begin{enumerate}
+	\item Update hypernets\_tools
+	\item Install Dependencies
+	\item Download and install YoctoHub
+	\item Run Yocto-Pictor auto-config  
+	\item install / update libhypstar
+	\item Configure Hypstar port
+\end{enumerate}
+
+\noindent Once every step is done, you can try to launch the \textit{Graphical User
+Interface} (and refer to the section \ref{sec:firstTests} for the first tests) with:
+\vspace{-10pt}
+\begin{lstlisting}
+python -m hypernets.gui
+\end{lstlisting}
+
+\subsection{Configuration Files}
+All parameters of the \textit{hypernets\_tools} can be found in 
+text files called \textit{configuration files}.
+Splitted in two different parts, the first one is called
+\textit{static} (see annex \ref{annex:staticconfig}) ; and the second one \textit{dynamic} 
+that will be synchronized over network allowing the user to perform remote 
+setting-up of the system (see annex \ref{annex:dynamicconfig}). You can edit it
+using any text editor (e.g. vi, nano, ...). 
+
+
+\begin{lstlisting}
+ls 
+config_static.ini config_dynamic.ini
+\end{lstlisting}
+
+\subsection{Common Examples of Command}
+As a python application, you can \textit{call} most of the modules and
+submodules of \textit{hypernets\_tools} using the \textit{python -m
+hypernets.module.submodule} syntax.
+Moreover, the command "--help" with a package name can provide informations
+about how to use the package on the \textit{Command Line Interface}.
+Note also that arguments are following the GNU argeument syntax convention : 
+
+\noindent\href{https://www.gnu.org/software/libc/manual/html\_node/Argument-Syntax.html}{https://www.gnu.org/software/libc/manual/html\_node/Argument-Syntax.html}
+
+\subsubsection{Driving the Yocto-Pictor}
+\vspace{-16pt}
+\begin{lstlisting}
+python -m hypernets.yocto.relay --help
+\end{lstlisting}
+\vspace{-10pt}
+\lstinputlisting{logs/yocto_relay_help.txt}
+
+\noindent Closing the relay number one:
+\vspace{-10pt}
+\begin{lstlisting}
+python -m hypernets.yocto.relay --state on --id-relay 1  # long version
+python -m hypernets.yocto.relay -son -n1                 # short version
+\end{lstlisting}
+
+\subsubsection{Moving the Pan-Tilt}
+\vspace{-16pt}
+\begin{lstlisting}
+python -m hypernets.geometry.pan_tilt --help
+\end{lstlisting}
+\vspace{-10pt}
+\lstinputlisting{logs/pan_tilt_help.txt}
+\begin{lstlisting}
+python -m hypernets.geometry.pan_tilt --pan 90 --tilt 180 --wait # long
+python -m hypernets.geometry.pan_tilt -w -p 90 -t 180            # short
+\end{lstlisting}
+
+
+\subsection{Protocol Files}
+In order to process an automatic sequence file (i.e. a multitude of measurement
+from diverse geometry), you have to first define a \textit{sequence file}. A
+bunch of example of sequence file are given in the hypernets/ressource/sequence\_sample 
+folder. Edit then the field \textit{sequence\_file} under the general section
+of \textit{config\_dynamic.ini}. Note that the path to your sequence
+file can be absolute or relative path (see Annex \ref{annex:dynamicconfig}).
+\noindent Prior to any other instruction, the file has to start with this line:
+\vspace{-10pt}
+\begin{lstlisting}
+HypernetsProtocol v2.0
+\end{lstlisting}
+\vspace{-6pt}
+\noindent The general syntax to make a measurement can be given as a
+\textit{one line instruction}:
+\vspace{-10pt}
+\begin{lstlisting}
+@[geometry1, #flag1, #flag2] + I.measurement1 + J.measurement2
+\end{lstlisting}
+\vspace{-6pt}
+or like this:
+\vspace{-10pt}
+\begin{lstlisting}
+@[geometry2] 
+      + K.measurement3 
+	  + L.measurement4
+\end{lstlisting}
+
+\noindent Whith \textit{geometry1} and \textit{geometry2} for two geometries;
+\textit{I, J, K, L} are the counts (integers, number of measurement) 
+associated respectively with \textit{measurement1, measurement2, measurement3
+and measurement4};
+and \textit{flag1} and \textit{flag2} are two associated conditions for the
+geometry1.
+
+\subsubsection{Geometry}
+A geometry always starts with the symbol "@" and contains a \textit{pan
+} (azimuth) coordinate follow by a pan reference, and a \textit{tilt} (zenith) 
+coordinate follow by a tilt reference. Optionally, one or several flags 
+(conditionning flag) can be specified in a geometry.
+
+\vspace{10pt}
+\noindent 3 types of geometry reference are understandable :
+\begin{itemize}
+	\item \textit{abs}  : absolute (given as the pan-tilt reference)
+	\item \textit{sun}  : sun azimuth and zenith as a reference
+	\item \textit{hyper}: north (pan) and nadir (tilt) as a reference 
+\end{itemize}
+
+\subsubsection{Measurements}
+Measurement can be of 3 different types:
+\begin{itemize}
+	\item Radiometer: defined as a type (\textit{vnir, swir, both)} and 
+		an entrance (\textit{rad, irr, dark}), follow by two integration times
+		concatenated by dots.
+	\item Picture
+	\item Validation
+\end{itemize}
+
+\subsubsection{Examples}
+\vspace{-10pt}
+\begin{lstlisting}
+@[0, sun, 0, sun] + 1.picture           # Take a picture of the sun
+@[0, hyper, 90, hyper]                  # Point to the horizon north
+@[198, abs, hyper] + 20.validation      # Make 20 VM measurements
+@[90, sun, 180, hyper] + 6.vnir.irr.0.0 # Make 6 irradiance measure
+\end{lstlisting}
+
+\begin{lstlisting}
+HypernetsProtocol v2.0
+
+# Flag definitions :
+~ #firstLessThanFourSec := $spectra_file1.it_vnir <= 4096
+~ #sequenceWasFastEnough := $elapsed_time < 120
+
+@[ 90.0, sun, 180.0, hyper ]
+	+ 1.vnir.irr.0.0
+# Picture of the Sun only if sequence is < 2 minutes
+@[ 0.0, sun, 0.0, sun, #firstLessThanFourSec ]
+	+ 1.picture
+# Park only if first integration time is less than 4 second :
+@[ 0.0, sun, 0.0, hyper, #sequenceWasFastEnough ]
+\end{lstlisting}
+
+
+% Note: don’t forget to set-up the serial port configuration for
+% the pan-tilt (see quickstart guide 2.3.3)

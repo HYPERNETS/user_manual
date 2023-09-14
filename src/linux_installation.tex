@@ -1,0 +1,81 @@
+\section{Installing a Linux Distibution}
+
+
+\noindent\timeclock{1}{30}
+\vspace{10pt}
+
+This part aims to install a fresh linux system on the rugged PC. Most of the first
+tests have been performed with \textit{Manjaro} Linux. However, any UNIX system could 
+replace this distribution. We also have experimented few updating issue with
+Manjaro as it is a \textit{rolling release distribution}. Hence the last version of 
+the software has been tested with \textit{Debian} that might be the prefered
+solution.
+
+\vspace{10pt}
+\noindent\textbf{\underline{Material List}:}
+\begin{enumerate}
+		\item Rugged PC Cincoze
+		\item USB Stick up to 2GB
+		\item Internet connection
+		\item Screen, keyboard, and mouse
+\end{enumerate}
+
+\subsection{Debian Linux System}
+\subsubsection{Creating an Installation USB of Debian Linux}
+\par Alternatively you can use a Debian System, visit this 
+\href{https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/}{link}
+and download those two files:
+\vspace{-10pt}
+\begin{lstlisting}
+debian-11.7.0-amd64-netinst.iso
+SHA256SUMS
+\end{lstlisting}
+Check-up the integrity of your downloaded file with:
+\vspace{-10pt}
+\begin{lstlisting}
+sha512sum -c SHA512SUMS.txt
+debian-11.7.0-amd64-netinst.iso: Success
+\end{lstlisting}
+The next step is to burn the image with:
+\vspace{-11pt}
+\begin{lstlisting}
+umount /dev/sdX*
+sudo dd if=/path/to/debian.iso of=/dev/sdX status="progress"
+(replace sdX with the ID of your usb stick)
+\end{lstlisting}
+\vspace{6pt}
+\textbf{\textcolor{red}{Double check your device name before writing onto
+it (please refer to the equivalent \ref{usbLiveCreation} in the Manjaro
+section)}}.
+
+\subsubsection{Indicative settings for the Installation}
+
+\begin{enumerate}
+	\item Boot on the USB stick (see Annex \ref{annex:bios} to configure the 
+		BIOS)
+	\item Choose the \textit{Graphical Install} and the language
+		\textit{English}
+	\item Set \textit{United Kingdom} as  location and select your keyboard mapping
+	\item Configure a Network connection for the installation
+	\item Set up  machine name, user and root passwords
+	\item Force UEFI installation: \textit{yes} 
+	\item Select the \textit{guided partioning} with all files in one partition (recommended)
+	\item Participate in the package usage survey: \textit{no}
+	\item \textcolor{red}{Select the \textbf{Xfce} server X} and add
+		\textit{standard system utilities}
+\end{enumerate}
+\vspace{1pt}
+\noindent Once done, remove the USB key stick and reboot. You should see a
+prompt asking you the password you previously setted-up. 
+Open a terminal \textit{(ctrl + alt + t)} and type the following commands:
+\begin{lstlisting}
+rmdir Music/ Pictures/ Videos/ Public/ Templates/
+su
+<password>
+/usr/sbin/usermod -aG sudo <username>
+/usr/sbin/usermod -aG adm <username>
+\end{lstlisting}
+Logout, login and install git with: 
+\begin{lstlisting}
+sudo apt install git
+\end{lstlisting}
