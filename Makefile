@@ -11,7 +11,7 @@ compress:
  	-sOutputFile=hypernets_user_manual_compressed.pdf hypernets_user_manual.pdf
 
 clean:
-	rm -f *aux
-	rm -f *log
-	rm -f *toc
-	rm -f *out
+	rm -f *aux src/*aux
+	rm -f *log src/*log
+	rm -f *toc src/*toc
+	rm -f *out src/*out
