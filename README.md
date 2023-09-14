@@ -1,3 +1,5 @@
+![Hypernets Logo](logoHypernets.png)
+
 # LaTeX code and pictures of the User Manual (D4.7)
 
 ## Make the document, clean and compress the PDF file
