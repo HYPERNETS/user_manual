@@ -5,10 +5,10 @@
 make && make clean
 make compress
 ```
-## Tip
+## Tip:
 You can make a chapter selection using (for example) the command:
 ```tex
-%includeonly{src/chapter1, src/mouting_guide}
+includeonly{src/chapter1, src/mouting_guide}
 ...
 \begin{document}
 ...
